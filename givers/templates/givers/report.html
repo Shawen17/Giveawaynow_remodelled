@@ -1,0 +1,91 @@
+{% extends  'givers/base_dashboard.html' %}
+
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+ 
+{% block content %}
+
+<div class="dash-main">
+    <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button" onclick="openCity('Offered')">Offered</button>
+        <button class="w3-bar-item w3-button" onclick="openCity('Requested')">Requested</button>
+    </div>
+    
+    <div class="row">
+        
+          <div id="Offered" class="w3-container city">
+            <h2>Offered</h2>
+            {% if offered %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Picture</th>
+                    <th>Status</th>  
+                </tr>
+            {% for i in offered %}
+                <tr style="font-size: small;">
+                    <td><a style="color:white" href="{% url 'viewgift' i.id %}"> {{ i.name }}</a></td>
+                    <td><a style="color:white" href="{% url 'viewgift' i.id %}"> {{ i.category }}</a></td>
+                    <td><a href="{% url 'viewgift' i.id %}"><img style="border-radius: 12px;padding-top:20px ;" alt="pic" height=50, width=50 src="{{ i.image.url }}"></a></td>
+                    <td>{{ i.gift_status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+          </div>
+          
+          <div id="Requested" class="w3-container city" style="display:none">
+            <h2>Requested</h2>
+            {% if picks %}
+            <form method="POST"  action="{% url 'cancelpicked' %}"> 
+            <table>
+                <tr>
+                    <th>Select</th>
+                    <th>Ticket</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Picture</th>
+                    <th>Date_Requested</th>
+                    <th>Date_Delivered</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            {% for j in picks %}
+                <tr style="font-size: small;" class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+                    <td width="20%"><input type="checkbox" name="chk[]" value="{{ j.id }}"></td>
+                    <td><a style="color:black" href="{% url 'viewpicked' j.id %}">{{ j.gift.ticket }}</a></td>
+                    <td><a style="color:black" href="{% url 'viewpicked' j.id %}"> {{ j.name }}</a></td>
+                    <td><a style="color:black" href="{% url 'viewpicked' j.id %}"> {{ j.category }}</a></td>
+                    <td><a href="{% url 'viewpicked' j.id %}"><img style="border-radius: 12px;padding-top:20px ;" alt="pic" height=50, width=50 src="{{ j.image.url }}"></a></td>
+                    <td>{{ j.date_requested }}</td>
+                    <td>{{ j.date_received }}</td>
+                    <td>{{ j.gift.amount }}</td>
+                    <td>{{ j.gift_status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            {% csrf_token %}
+
+            <div style="padding-top: 40px;"> 
+
+                <button id="btn-appear" class="button button2" value="Redeem" name="redeem" type="submit">Redeem</button>
+                <button class="button button3" value="Return"  name="return"  type="submit">Return</button>
+                <button class="button button4" value="Received" name="received" type="submit">Mark as Received</button>
+            </div>
+            
+            </form> 
+          </div>
+
+          
+    </div>
+</div>
+    
+
+
+
+
+{% endblock %}

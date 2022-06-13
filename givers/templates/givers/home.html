@@ -1,0 +1,227 @@
+{%  extends 'givers/base.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+{% include 'givers/message.html' %}
+<!-- SIDEBAR -->
+        
+
+     <!-- top-section -->
+   
+    
+     <!-- .main-navigation -->
+     <!-- .social-icons -->
+ <!-- .sidebar-menu -->
+
+
+
+
+<div class="main-content ">
+    <div class="fluid-container" style="padding-top: 10px;">
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text mb-3" style="min-height: 120px;">
+                <h2 style="padding-top: 30px;" class="glow animate__animated animate__bounceInDown">Giveaways for Grab!!!!</h2>
+            </div>
+            <!-- <div class="welcome-text"> -->
+                
+            <!-- </div> -->
+        </div>
+        <div class="row glow d-flex justify-content-center" style="background: black;color:white;text-align: center;">
+            <h2 style="padding-top: 20px;text-align: center;">Simple Thought | Great Impact</h2>
+            <h5><span style="padding: 16px;"> This is an avenue to make someone somewhere smile by giving out items that are not of use to you but will be a fortune for another person.</span></h5>
+        </div>
+        
+        
+        <div id="projects">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="widget-title" style="padding-left: 5px;">SAMPLE OF THINGS TO GIVE</h4>
+                    <p style="padding-left: 7px;">Don't underestimate what that thing you no longer value will mean to somebody out there, so kindly GIVE.</p>
+                </div>
+            </div>
+            <div class="row projects-holder">
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static  'givers/img/baby_cloth.jpg' %}" alt="baby_cloth" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Baby Items</a></h5>
+                                <p style="word-wrap: break-word;">baby clothes,shoes,toys to make baby smile</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/books.jpg' %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Books/Novels</a></h5>
+                                <p style="word-wrap: break-word;">interesting books to read</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/women_coporate.jpg' %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Coporate Wears</a></h5>
+                                <p style="word-wrap: break-word;">Those sharp coporate wears you have outgrown</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/grocery2.jpg' %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Food Items</a></h5>
+                                <p style="word-wrap: break-word;">Bulk sealed/Canned food items about to expire? Feed people with them</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static  'givers/img/music.jpg' %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Musical Gadgets</a></h5>
+                                <p style="word-wrap: break-word;">Help someone's music journey today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/household_appliances.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Household appliances</a></h5>
+                                <p style="word-wrap: break-word;">All range of cooking and kitchen appliances to make life better</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/men_top.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Wardrobe Items</a></h5>
+                                <p style="word-wrap: break-word;">Outgrown/unused clothe items and shoes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/men_footwear.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Footwear</a></h5>
+                                <p style="word-wrap: break-word;">Those sharp shoes that are out of your taste</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/women_gown.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Woman Fashion</a></h5>
+                                <p style="word-wrap: break-word;">Outgrown/out of style? make someone happy to have them</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/women_native.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Woman Owanbe</a></h5>
+                                <p style="word-wrap: break-word;">Be the reason someone slays at Owmanbe today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/women_top.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Slay dresses</a></h5>
+                                <p style="word-wrap: break-word;">Put a smile on a face when they wear giveaway dresses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" >
+                    <div class="project-item">
+                        <img src="{% static 'givers/img/ladies_footwear.jpg'  %}" alt="" height="200" width="350">
+                        <div class="project-hover">
+                            <div class="inside">
+                                <h5><a href="{% url 'giveaway' %}">Ladies Footwear</a></h5>
+                                <p style="word-wrap: break-word;">Make someone rock those shoes you no longer wear</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .projects-holder -->
+        </div>
+            <hr>
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <img src="{% static  'givers/img/package.jpg' %}" alt="Avatar" height="400" width=100%>
+                        <div class="container-package">
+                            <p style="padding: 5px;"><b>Recieve your awesome gift package in no time</b></p>
+                        </div>
+                    </div>
+            </div>
+            
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <h4 style="text-align: center;">How it works</h4>
+                        <video width=100% height="400" controls>
+                            <source src="{% static  'givers/vid/giveawaynow1.mp4' %}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                        </video>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="card" style="background-color: #a60059;color: white;">
+                        
+                            <marquee behavior="scroll" direction="down" scrollamount="4" >
+                            <p style="margin:5px;"><b>Victor:</b>  "Thanks to this platform, i have been blessed with different items"</p>
+                            <p style="margin:5px;"><b>Susan:</b>  "Wow, got a blender for my kitchen business, thank you...."</p>
+                            <p style="margin:5px;"><b>Tola:</b>  "I have been looking for the way to give out loads of items wasting away. happy I will be the reason someone will smile"</p>
+                            <p style="margin:5px;"><b>Bimbo:</b>  "I would never imagine i would get new clothes, thank you to that person that made it happen this hard period"</p>
+                            <p style="margin:5px;"><b>Tokunbo:</b>  "Omo, i go dey mark this site bumper to bumper, to be the lucky person to pick gifts first"</p>
+                            <p style="margin:5px;"><b>Arinola:</b>  "My baby will be free from malaria at last, thanks to the baby net.Those giving will never lack"</p>
+                            <p style="margin:5px;"><b>Jamiu:</b>  "Chai! see me wey no get money for aso ebi, but my Agbada na him bad pass for my friend wedding, this place is super cool!"</p>
+                            </marquee>
+                        
+                    </div>
+    
+                </div>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

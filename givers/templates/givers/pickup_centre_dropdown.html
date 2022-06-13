@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <title>Pickup Centre</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+</head>
+{% load crispy_forms_tags %}
+<body>
+    <div class="row d-flex justify-content-center" style="padding-top: 20px;">
+        <select class="custom-select-lg colorful-select dropdown-default" searchable="Search here.." style="width: 180px;" data-style="btn-success">
+        <option selected disabled="true">--select city--</option>
+        {% for centre in city %}
+        <option value="{{ centre.id }}">{{ centre.name|title }}</option>
+        {% endfor %}
+        </select>
+    </div>
+</body>
+</html>

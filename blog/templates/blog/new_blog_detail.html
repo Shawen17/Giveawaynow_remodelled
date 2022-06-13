@@ -1,0 +1,115 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png"  href="{% static 'givers/img/G.png' %}"/>
+    <title>Giveawaynow Blog</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+
+    
+    <link rel="stylesheet" href="{% static 'givers/css/blogStyles.css' %}" />
+    <style>
+        #comment-form{
+      display:none;
+    }
+    </style>
+  </head>
+  <body>
+
+    <section class="sec1" style="width: 100%;">
+      
+      <h2>Reading has a way of making your mind travel</h2>
+      
+      <div class="row d-flex justify-content-center">
+        <div class="col-0 col-md-2"></div>
+        <div class="col-12 col-md-8">
+          <img src="{{ posts.image.url }}" alt="blog_image" />
+      <div id="updates">
+        
+        <p>{{ posts.title|upper }}</p>
+        <p>{{ posts.date|timesince }} ago</p>
+        
+      </div>
+      
+        
+        
+          <p style="font-size:large;font-family:Verdana, Geneva, Tahoma, sans-serif;">{{ posts.story }}</p>
+          <button><i class="fas fa-share-alt"></i>SHARE</button>
+        </div>
+        <div class="col-0 col-md-2"></div>
+      </div>
+      
+    </section>
+
+    <section class="sec2">
+        {% for i in comments %}
+        {% if forloop.counter0|divisibleby:3 %}<div class="row">{% endif %}
+        <div class="col-12 col-md-4">
+            <div class="anonymous1">
+        
+        
+                <b>{{ i.email }}</b> <span style="padding-left: 10px;"></span> <b>{{ i.created|timesince }} ago</b>
+                <p>{{ i.body }}</p>
+                <hr>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}</div>{% endif %}
+        {% endfor %}
+        
+    </section>
+
+    <section class="sec3">
+        <div class="row">
+            <div class="col-3 col-md-2 col-lg-1"><button style="border-radius:8px;background-color: rgb(107, 199, 199);text-align: center;font-family: fantasy;font-size: 0.75rem;" id="btn-appear">Add comment</button></div>
+            <div class="col-9 col-md-10 col-lg-11"></div>
+        </div>
+      
+        <br/>
+        <div class="row">
+            <div class="col-6 col-md-5 col-lg-5">
+                <form  method="post" id = "comment-form" action="{% url 'blog:post_comment' posts.id %}">
+                    {% csrf_token %}
+                    
+                    {{ comment_form | crispy }}
+                    <br>
+                    
+                    <button style="width: 485px;height: 40px;background-color: teal;font-size: larger;color: white;" id='btn-disappear'  type='submit'>submit</button>
+                </form>
+            </div>
+            <div class="col-6 col-md-7 col-lg-7">{{ error }}</div>
+        </div>
+    </section>
+    
+    <script type="text/javascript">
+        var form = document.getElementById('comment-form');
+        var btn_appear = document.getElementById('btn-appear');
+        var btn_disappear =document.getElementById('btn-disappear');
+      
+        btn_appear.onclick= function(e){
+          e.preventDefault()
+          if (form.style.display === 'none'){
+            form.style.display='block';
+          } else {
+            form.style.display='none';
+          }
+        }
+      </script>
+    
+
+  </body>
+</html>

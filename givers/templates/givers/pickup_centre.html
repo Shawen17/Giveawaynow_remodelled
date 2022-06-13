@@ -1,0 +1,143 @@
+
+  {% load crispy_forms_tags %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+  <style>
+    #pickupForm{
+      visibility:hidden;
+      padding-top: 20px
+    }
+    #deliveryForm{
+      display:none;
+      padding-top: 20px
+    }
+   
+    #pickup-appear{
+      padding:4px;
+      padding-right: 10px;
+      background-color:#0275d8;
+      color: aliceblue;
+
+    }
+    #delivery-appear{
+      padding:4px;
+      padding-left: 10px;
+      background-color:#5cb85c;
+      color: aliceblue;
+    }
+    a{
+      color:white;
+      text-decoration: none;
+    }
+    a:hover{
+      color:white;
+      text-decoration: none;
+    }
+    .seldemo {
+      background: #A0CFCF;
+      border-radius: 15px;
+      padding:50px;
+      font-size:22px;
+      color:black;
+      max-width: 25rem  
+    }
+    .selcls { 
+      margin-bottom: 10px;
+      padding: 3px;
+      border-radius: 10px; 
+      border: solid 1px #517B97; 
+      outline: 0; 
+      background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CAD9E3), to(#FFFFFF)); 
+      background: -moz-linear-gradient(top, #FFFFFF, #CAD9E3 1px, #FFFFFF 25px); 
+      box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+      -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+      -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+      width:150px;
+      }
+  </style>
+
+  <div class="row d-flex justify-content-center" style="padding-top: 20px;">
+    <h4> kindly choose preferred collection mode</h4>
+  </div>
+  <br>
+  <div class="row d-flex justify-content-center" style="padding-top: 10px;display:flex;margin: 5px;">
+    <form>
+      <button  id="pickup-appear">Pickup option</button>
+    </form>
+    <form>
+      <button id="delivery-appear" >Delivery option</button>
+    </form>
+  </div>
+  
+
+
+<div id="pickupForm">
+  <div class="row d-flex justify-content-center">
+    <h5>Kindly choose the pickup point closest to you</h5>
+  </div>
+  
+   
+    <div class="row d-flex justify-content-center">
+      <form class="form-width" style="max-width: 18rem;border:slategray 4px solid;padding: 50px;border-radius: 15px;background-color:cornsilk;" method ='post' action="{% url 'pickup' %}">
+          {% csrf_token %}
+          <select class="selcls" name="centre" style="width: 180px;" data-style="btn-success">
+            <option selected disabled="true">--select city--</option>
+            {% for centre in city %}
+            <option value="{{ centre.name }}" name="h">{{ centre.name|title }}</option>
+            {% endfor %}
+            </select>
+          
+          <button class="btn btn-primary btn-2"   type='submit'>Submit</button>
+          
+      </form>
+    </div>
+</div>
+
+<div id="deliveryForm">
+  <div class="row d-flex justify-content-center">
+    <h1 style="text-align: center;font-weight: bolder;padding-top: 20px;">Provide Delivery Information</h1>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div  class="seldemo">
+    <form  method ='POST' action="{% url 'redeemgift' %}">
+      
+          {{ form1.receiver_number|as_crispy_field }}
+          <select class="selcls" data-live-search="true" name="city" style="width: 180px;" data-style="btn-success">
+            <option selected disabled="true">--select city--</option>
+            {% for centre in destination %}
+            <option value="{{ centre.city }}" name="g">{{ centre.city|title }}</option>
+            {% endfor %}
+          </select>
+          {{ form1.delivery_address|as_crispy_field }}
+        <button class="btn btn-success btn-2" type='submit'>Submit</button>
+        {% csrf_token %}
+    </form>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+  var form = document.getElementById('pickupForm');
+  var btn_appear = document.getElementById('pickup-appear');
+
+  btn_appear.onclick= function(e){
+    e.preventDefault()
+    if (form.style.visibility === 'hidden'){
+      form.style.visibility='visible';
+    } else {
+      form.style.visibility='hidden';
+    }
+  }
+</script>
+<script>
+  var form1 = document.getElementById('deliveryForm');
+  var delivery_appear = document.getElementById('delivery-appear');
+  delivery_appear.onclick= function(e){
+    e.preventDefault()
+    if (form1.style.display === 'none'){
+      form1.style.display='block';
+    } else {
+      form1.style.display='none';
+    }
+  }
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

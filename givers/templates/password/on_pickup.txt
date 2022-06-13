@@ -1,0 +1,24 @@
+{% autoescape off %}
+
+Hello,
+
+For the Reference number: {{ ref }} 
+breakdown for the items you have redeemed
+ 
+Giveaway Item(s):
+{{ item }}
+
+to be picked up at our {{ pickup_centre }} pickup centre within the next 6days.
+
+Address:
+{{ address }} 
+
+Kindly call {{ phone_number }} of our {{ pickup_centre }} centre for any further direction.
+
+Continue to Pickup and Giveaway items and also tell people about our web app.
+
+
+The Giveawaynow Team
+
+
+{% endautoescape %}

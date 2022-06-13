@@ -1,0 +1,172 @@
+{% extends 'givers/base.html' %}
+
+
+
+{% block content %}
+{% include 'givers/message.html' %}
+<!-- <div class="pop"> -->
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-12 col-lg-12">
+    <div class="marquee">
+        <div id="scroll-text">
+          {% for i in gift1 %}
+            {% if i.user.profile.profile_pic %} <img style="border-radius: 8px;" src="{{ user.profile.profile_pic.url }}" height="50" width="50"> {% else %} {{ i.user.username }} {% endif %} <span> gifted <img style="border-radius: 8px;" src="{{ i.image.url }}" height="50" width="50"></span><span>{{ i.date_posted|timesince }}</span><span style="padding-left:8px ;"></span>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->
+<div class="row">
+    <div class="col-0 col-md-7"></div> 
+    <div class="col-12 col-md-5">
+<form action="{% url 'giveaway' %}" style="padding-top: 5px;">
+<div class="form-group has-search" >
+    <span type="submit" class="fa fa-search form-control-feedback"></span>
+    <input style="border-radius: 12px;border: 1px black solid;" name="q" type="text" class="form-control" placeholder="search item category...">
+</div>
+</form>
+</div>
+</div>
+
+
+{% if page_obj.object_list %}
+<div class="row d-flex justify-content-center"></div>
+<div style="border-radius: 4px;padding: 4px;color:white;background: url('../../static/givers/img/people.jpg') no-repeat center center / cover;">
+<h3 style ='text-align: center;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;' class="blink">Awesome giveaways!</h3>
+</div>
+<!-- </div> -->
+<div class="container-fluid">
+    {% for i in page_obj.object_list %}
+    {% if forloop.counter0|divisibleby:4 %}<div class="row projects-holder">{% endif %} 
+        
+            <div class="col-md-3 col-sm-6">
+                <div class="project-item">
+                    <img style="border-radius: 12px;" src="{{ i.image.url }}" alt="pic" height="200" width="150">
+                    <div class="project-hover">
+                        <div class="inside">
+                            <h5><a href="#">{{ i.description }}</a></h5>
+                            <p>  {{ i.category }}---({{ i.quantity }})</p>
+                        </div>
+                    </div>
+                </div>    
+                
+                    <div class="menu">
+                        <form method="POST" action="{% url 'selectgift' i.id %}">
+                            {% csrf_token %}
+                            <button class="button button1"   type="submit">Pickup</button>
+                        </form>
+                    </div>
+                
+            </div>  
+        {% if forloop.counter|divisibleby:4 or forloop.last %} </div>{% endif %} 
+    {% endfor %}       
+              
+</div>
+    {% else %}  
+    <h4 style="text-align: center;padding-top: 20px;">No Available Gift in your State of Residence</h4>
+ 
+{% endif %}
+<!-- <nav >
+    <ul class="pagination justify-content-center pagination-sm">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}"><</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="True"><</a>
+        </li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="page-item active" aria-current="page" >
+            <span class="page-link" style="background-color: aqua;">
+              {{ i }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">></a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="True">></a>
+        </li>
+      {% endif %}
+    </ul>
+</nav> -->
+<nav aria-label="pagination" class="pagination_area" style="padding-top: 50px;">
+  <div class="row">
+    {% if page_obj.end_index > 0 %}
+    <div class="col-2 col-md-3"></div>
+    <div class="col-3 col-md-2 d-none d-md-block">
+      <p>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count}}.</p>
+    </div>
+    {% endif %}
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="col-7 col-md-7 dataTables_pager">
+      <ul class="pagination justify-content-center pagination-sm">
+        {% if page_obj.has_previous %}
+  
+          <li class="page-item">
+            <a class="page-link" data-page="1" href="?page={{ page_obj.previous_page_number }}">
+              <i class="fa fa-angle-double-left"></i>
+            </a>
+          </li>
+          {% if page_obj.previous_page_number > 1 %}
+            <li class="page-item">
+              <a class="page-link " data-page="{{page_obj.previous_page_number}}"  href="?page={{ page_obj.previous_page_number }}">
+                <i class="fa fa-angle-left"></i>
+              </a>
+            </li>
+          {% endif %}
+  
+        {% endif %}
+  
+        {% if page_obj.previous_page_number > 2 %}
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.number|add:'-2'}}" href="?{{page_obj.number|add:'-2'}}"> {{ page_obj.number|add:"-2" }} </a>
+           </li>
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.number|add:'-1'}}" href="?page={{page_obj.number|add:'-1'}}"> {{ page_obj.number|add:"-1" }} </a>
+          </li>
+        {% endif %}
+  
+        <li class="page-item active"><span class="page-link " style="background-color: aqua;">{{ page_obj.number }}</span></li>
+  
+        {% if page_obj.paginator.num_pages > page_obj.number|add:"2" %}
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.number|add:'1'}}" href="?page={{page_obj.number|add:'1'}}"> {{ page_obj.number|add:"1" }} </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.number|add:'2'}}" href="?page={{page_obj.number|add:'2'}}"> {{ page_obj.number|add:"2" }} </a>
+          </li>
+        {% endif %}
+  
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.next_page_number}}" href="?page={{ page_obj.next_page_number }}">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </li>
+  
+          <li class="page-item">
+            <a class="page-link " data-page="{{page_obj.paginator.num_pages}}" href="?page={{page_obj.paginator.num_pages}}">
+              <i class="fa fa-angle-double-right"></i>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  </nav>
+
+{% endblock %}
+

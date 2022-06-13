@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css"> 
+<link rel="stylesheet" href="{% static 'givers/css/subcription.css' %}"/>
+<!-- </head> -->
+<section class="price_plan_area section_padding_130_80" id="pricing">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <!-- Section Heading-->
+            <div class="section-heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <h6>Pricing Plans</h6>
+              <h5>Let's find the plan that suits you</h5>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <form method="POST"  action="{% url 'initiate-subscription' %}">
+          
+        <div class="row justify-content-center">
+          <!-- Single Price Plan Area-->
+          <div class="col-4">
+            <div class="single_price_plan wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <div class="title">
+                <h3>{{ basic.name|title }}</h3>
+                <div class="line"></div>
+              </div>
+              <div class="price">
+                <h4>N{{ basic.charge }}</h4>
+              </div>
+              <div class="description">
+                <!-- <p><i class="lni lni-checkmark-circle"></i>Duration: 1month</p> -->
+                <p><i class="lni lni-checkmark-circle"></i>4 items</p>
+              </div>
+              <button class="btn btn-success btn-2" name="{{ basic.name }}" value="{{ basic.name }}" type="submit">Subscribe</button>
+            </div>
+          </div>
+          <!-- Single Price Plan Area-->
+          <div class="col-4">
+            <div class="single_price_plan active wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <!-- Side Shape-->
+              <div class="side-shape"><img src="https://bootdey.com/img/popular-pricing.png" alt=""></div>
+              <div class="title">
+                <h3>{{ standard.name|title }}</h3>
+                <div class="line"></div>
+              </div>
+              <div class="price">
+                <h4>N{{ standard.charge }}</h4>
+              </div>
+              <div class="description">
+                <!-- <p><i class="lni lni-checkmark-circle"></i>Duration: 3Months</p> -->
+                <p><i class="lni lni-checkmark-circle"></i>7 items</p>
+              </div>
+                <button class="btn btn-warning" name="{{ standard.name }}" value="{{ standard.name }}" type="submit">Subscribe</button>
+              </div>
+          </div>
+          <!-- Single Price Plan Area-->
+          <div class="col-4">
+            <div class="single_price_plan wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <div class="title">
+                <h3>{{ premium.name|title }}</h3>
+                <div class="line"></div>
+              </div>
+              <div class="price">
+                <h4>N{{ premium.charge }}</h4>
+              </div>
+              <div class="description">
+                <!-- <p><i class="lni lni-checkmark-circle"></i>Duration: 6months</p> -->
+                <p><i class="lni lni-checkmark-circle"></i>12 items</p>
+              </div>
+              <button class="btn btn-info" name="{{ premium.name }}" value="{{ premium.name }}" type="submit">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        {% csrf_token %}
+      </form>
+      </div>
+    </section>
+
+<!-- </html>  -->

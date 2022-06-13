@@ -1,0 +1,47 @@
+{% extends 'givers/base.html'  %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% include 'givers/message.html' %}
+<div class="account">
+<div class="container">
+    <h1 style="text-align: center;font-weight: bolder;padding-top: 20px;">Create Gift</h1>
+    <br>
+    <div class="row d-flex justify-content-center">
+    <form  enctype="multipart/form-data" style="max-width: 50rem;border:slategray 2px solid;padding: 50px;border-radius: 15px;background-color: white;" method ='POST',action="{% url 'giveaway' %}">
+        {{ form.image|as_crispy_field }}
+        <div class="form-row">
+            <div class="form-group col-8 col-md-8 mb-0">
+                {{ form.description|as_crispy_field }}
+            </div>
+            <div class="form-group col-4 col-md-4 mb-0">
+                {{ form.quantity|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6 col-md-6 mb-0">
+                {{ form.gender|as_crispy_field }}
+            </div>
+            <div class="form-group col-6 col-md-6 mb-0">
+                {{ form.category|as_crispy_field }}
+            </div>
+        </div>
+        {% csrf_token %}
+        
+        <button class="button button1" id='button-pop'  type='submit' style='background-color:aqua;'>Gift</button>
+    </form>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

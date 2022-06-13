@@ -1,0 +1,17 @@
+{% autoescape off %}
+
+Hello,
+
+This is the breakdown for the items you have picked for delivery; 
+Invoice Reference {{ ref }}
+Giveaway Items:
+{{ ordered_giveaway }}
+
+
+delivery cost: {{ amount }}
+
+
+The Giveawaynow Team
+
+
+{% endautoescape %}

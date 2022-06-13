@@ -1,0 +1,47 @@
+{% extends 'givers/base.html' %}
+
+
+{% block content %}
+<p>
+    Our mission is to bring people who are willing to give out items they no longer use
+    and people who will find these items valuable to a platform where this can be achieved seamlessly.
+    In doing this, we will require our users to voluntarily provide some of their personal
+    data which will be needed to communicate and enhance item delivery.
+</p>
+<p>
+    The data we collect are through the process of user Signup or if login is through 
+    google social login, the data will be collected in the process of the mandatory 
+    user account update and when a user wants to give out and pickup an item. The data that will be collected during these processes include the following:
+    <b>Fullname,username,email address,mobile number,state of residence,contact address,gender and profile picture(optional).</b>
+</p>
+<h3>Useage of Collected Data</h3>
+<p>
+    Since the users of this app won't be bots, it is important we know our users by their names, for every
+    internet based service, email address is needed to verify that we are dealing with a real person and it is a means
+    of having a unique identity and also a communication medium to tell our users about the latest happenings, offers and reply to
+    any of their request when they contact us.
+    When a user offer an item or wants to pick up an item on the app, the phone number is needed so that the picking up and delivery of 
+    of these items need the dispatch or logistics company to communicate in real time with our users. As it is with the use of the user phone number,
+    so it is with the data of the contact/delivery address of our users to know the location for the dispatch/logistics 
+    company to pickup or deliver the relevant items.
+</p>
+<p>
+    Data such as profile picture are not mandatory but when provided, they might be used solely for purpose of appreciation of the givers on this app 
+    if they chose not to be anonymous.
+</p>
+<h3>Data Sharing</h3>
+<p>
+    As stated earlier, the data we collect are securely stored with our cloud host and only shared with 
+    the particular logistics company who we engage to carry out the obligation of picking up the offered
+    items and delivering requested items and the user data we require is needed to facilitate this process. Apart from this stated reason,
+    on no account would we divulge the data of our users to any third party. For any further clarification, kindly <b><a href="{% url 'contact' %}">Contact us.</a></b>
+</p>
+<h3>Payment Related Data</h3>
+<p>
+    For now, our only acceptable means of payment is through <b>Paystack</b> a well established,truthworthy and most of all secure online 
+    payment platform. With them, our users can be rest assured that their banking details is safe and secure.
+</p>
+
+
+
+{% endblock %}

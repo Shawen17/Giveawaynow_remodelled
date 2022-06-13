@@ -1,0 +1,95 @@
+{% extends  'givers/base_dashboard.html' %}
+
+
+{% load static %}
+
+
+{% load crispy_forms_tags %}
+ 
+{% block content %}
+{% include 'givers/message.html' %}
+
+<div class="dash-main">
+    <div class="row">
+        <div class="col-9 col-md-10 col-lg-10"></div>
+        <div class="col-3 col-md-2 col-lg-2">
+            <span style="padding-right: 6px;">Status</span>{% if user.profile.status %}<label style="padding: 4px;background-color:rgb(123, 204, 123);border-radius: 6px;">active</label>{% else %}<label style="padding: 4px;background-color:grey;border-radius: 6px;color: white;">inactive</label>{% endif %}
+        </div>
+    </div>
+    {% if about_to_expire or not user.profile.status %}
+    <div class="row">
+        <div class="col-9 col-md-10 col-lg-10"></div>
+        <div class="col-3 col-md-2 col-lg-2">
+            <form action="{% url 'subscription' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" style="background-color:#e2292c;border-radius: 8px;color: white;">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+<div style="padding-top: 10px;">
+<div class='row'>
+    <div class='col-md-5 col-lg-4'><p style="padding-left:10px;">welcome {{ user.username }}</p></div>
+    <div class='col-md-4 col-lg-6'>{{ msg }}</div>
+    <div class='col-md-3 col-lg-2'>
+        <figure class="image-right">
+            {% if user.profile.profile_pic %}
+            <img  style="border-radius:12px;padding-right: 30px;" src="{{ user.profile.profile_pic.url }}" alt="pic" height=120, width=120>
+            {% endif %}
+        </figure>
+    </div>
+</div>
+
+</div>
+
+{% if picks %}
+<div class="row d-flex justify-content-center">
+    
+    <div class="col-25">
+        <h4 style="text-align: center;margin-bottom: 10px;">{{ cart_items}} Item{{ cart_items|pluralize }}  Selected</h4>
+        <div class="container">
+            
+            <table style="font-size: large;margin: 5px;">
+                <tr>
+                    <th style="width: 40%;">Description</th>
+                    <th style="width: 20%;">Category</th>
+                    <th style="width: 35%;">Image</th>
+                    <th style="width:5%">Return</th>
+                </tr>
+                
+                {% for i in picks %}
+                <tr>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.category }}</td>
+                    <td><img style="border-radius: 8px;padding-top:10px;padding-left: 10px;" alt="pic" height=50, width=50 src="{{ i.image.url }}"></td>
+                    <td><form method="POST" action="{% url 'returnpicked' i.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name='p' value="{{ i.id}}" style="background-color: #f2f2f2;border: 0px;"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                   
+                </tr>
+                {%  endfor %}
+                
+            </table>
+            
+            <div class="row d-flex justify-content-center">
+                
+                    <form method="POST"  action="{% url 'cancelpicked' %}"> 
+                        {% csrf_token %}
+                        <button class="btn" value="Redeem" name="redeem" type="submit">Redeem</button>
+                    </form> 
+                
+            </div> 
+        </div>
+
+
+    </div>
+</div>
+{% endif %}
+
+</div>
+
+
+
+{% endblock %}
